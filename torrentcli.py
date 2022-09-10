@@ -65,7 +65,8 @@ def main():
     if "-s" in sys.argv:
         subprocess.run(f"{torrentStream} '{magnet}'")
     else:
-        subprocess.run(["xdg-open", magnet])
+        print(magnet)
+        subprocess.run(["deluge.lnk", magnet], shell=True)
 try:
     main()
 except KeyboardInterrupt:
