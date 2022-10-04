@@ -60,7 +60,6 @@ def main():
         # print(headers)
     else:
         magnet = data[x]["magnet"]
-    # print(magnet)
 
     if "-s" in sys.argv:
         subprocess.run(f"{torrentStream} '{magnet}'")
