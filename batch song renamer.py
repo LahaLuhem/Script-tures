@@ -2,8 +2,8 @@ import glob
 import re
 import os
 
-files = glob.iglob(input('Enter root directory: ') + '/**/*.mp3', recursive=True)
-print(files, end='\n\n')
+files = [file for file in glob.iglob(input('Enter root directory: ') + '/**/*.mp3', recursive=True)]
+print("\n".join(files), end='\n\n')
 input('%i files. Enter to continue ...' % (len(files)))
 for file in files:
     abs_filepath = os.path.join(os.path.dirname(__file__), file)
