@@ -2,8 +2,9 @@ import glob
 import re
 import os
 
-files = [file for file in glob.iglob(input('Enter root directory: ') + '/**/*.mp3', recursive=True)]
-print("\n".join(files), end='\n\n')
+files = [file for file in glob.iglob(input('Enter root directory:\n') + '/**/*.mp3', recursive=True)]
+print("\n________________________________________________________________\n\n"+("\n".join(list(map(lambda file: os.path.basename(file), files)))), end='\n')
+print("\n________________________________________________________________\n")
 input('%i files. Enter to continue ...' % (len(files)))
 for file in files:
     containing_folder_path_abs = '\\'.join(file.split('\\')[0:-1])
@@ -16,5 +17,7 @@ for file in files:
         new_filename = parts[0] + ' - ' + author + ' ' + parts[1]
 
     os.rename(file, containing_folder_path_abs+'\\'+new_filename)
+
+print("\n________________________________________________________________\n")
 
 response = input('... done. Enter to exit...')
