@@ -7,7 +7,7 @@ posix_separator = '\\' if os.uname()[0] == 'Windows' else '/'
 files = [file for file in glob.iglob(input('Enter root directory:\n') + '/**/*.mp3', recursive=True)]
 print("\n________________________________________________________________\n\n"+("\n".join(list(map(lambda file: os.path.basename(file), files)))), end='\n')
 print("\n________________________________________________________________\n")
-input('%i files. Enter to continue ...' % (len(files)))
+input('%i files detected. Enter to continue ...' % (len(files)))
 for file in files:
     containing_folder_path_abs = posix_separator.join(file.split(posix_separator)[0:-1])
 
