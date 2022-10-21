@@ -1,8 +1,9 @@
 import glob
 import re
 import os
+import platform
 
-posix_separator = '\\' if os.uname()[0] == 'Windows' else '/'
+posix_separator = '\\' if platform.uname()[0] == 'Windows' else '/'
 
 files = [file for file in glob.iglob(input('Enter root directory:\n') + '/**/*.mp3', recursive=True)]
 print("\n________________________________________________________________\n\n"+("\n".join(list(map(lambda file: os.path.basename(file), files)))), end='\n')
