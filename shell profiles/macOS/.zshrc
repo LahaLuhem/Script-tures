@@ -108,12 +108,19 @@ export ARCHFLAGS="-arch x86_64"
 #
 # Example aliases
 # alias zshconfig="nano ~/.zshrc"
+
+# default commands' patch
 alias ohmyzsh="nano ~/.oh-my-zsh"
 alias pod="arch -arm64 pod"
+# Flutter
 alias flutter-codegen="flutter pub run build_runner build --delete-conflicting-outputs"
+# Python
 alias pip-packages-upgrade="pip freeze | sed 's/==/>=/g' > requirements.txt && pip install -r requirements.txt --upgrade && rm requirements.txt"
 alias pip-sizes="pip3 list --format freeze|awk -F = {'print $1'}| xargs pip3 show | grep -E 'Location:|Name:' | cut -d ' ' -f 2 | paste -d ' ' - - | awk '{print $2 "/" tolower($1)}' | xargs du -sh 2> /dev/null | sort -h"
+# Git
 alias git-temp="git checkout"
+alias git-cleanup="git branch --merged | grep -v \* | xargs git branch -D"
+alias git-cleanup-hard="git branch | grep -v "develop" | grep -v "master" | xargs git branch -D"
 
 # Custom functions
 export function brew-sizes() {
@@ -139,9 +146,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - zsh)"
 
 # Custom PATH exports
-export PATH="$PATH:/Users/mehulahal/Documents/flutter/bin/"
+export PATH="$PATH:$HOME/Documents/flutter/bin/"
 export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH:/Users/mehulahal/Library/Android/sdk/platform-tools/"
+export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools/"
 export PATH="$PATH:/Applications/Atom.app/Contents/MacOS/"
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
