@@ -2,7 +2,8 @@ from git import Repo, RemoteReference
 import re
 import datetime
 
-repo: Repo = Repo("/Users/mehulahal/StudioProjects/medappv2")
+print("Enter repo path:")
+repo: Repo = Repo( input() )
 
 # Getting release branches
 release_regex = re.compile(r'/release*')
