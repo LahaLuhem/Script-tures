@@ -21,5 +21,13 @@ function git-cleanup-remote {
 	git remote prune origin
 }
 
+# Flutter + Dart FVM environment manager
+function global:flutter {
+	fvm flutter $args
+}
+function global:dart {
+	fvm dart $args
+}
+
 # Python
 New-Alias -Name "pip upgrade all" -Value "pip-review --local --interactive"
