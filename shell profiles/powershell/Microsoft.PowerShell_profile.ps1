@@ -1,6 +1,6 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\night-owl.omp.json" | Invoke-Expression
 
-# Git
+# GIT
 New-Alias -Name "git temp" -Value "git checkout"
 
 function git-cleanup-local {
@@ -21,6 +21,8 @@ function git-cleanup-remote {
 	git remote prune origin
 }
 
+
+# FLUTTER
 # Flutter + Dart FVM environment manager
 function global:flutter {
 	fvm flutter $args
@@ -29,5 +31,9 @@ function global:dart {
 	fvm dart $args
 }
 
-# Python
-New-Alias -Name "pip upgrade all" -Value "pip-review --local --interactive"
+
+
+# PYTHON
+function pip-upgrade-all {
+	python -m pip freeze --local | Select-String -Pattern '^\w+' | ForEach-Object { python -m pip install --upgrade $_.Matches.Value }
+}
