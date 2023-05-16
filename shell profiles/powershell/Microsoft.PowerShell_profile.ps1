@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config $env:POSH_THEMES_PATH/night-owl-minimal.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\night-owl.omp.json" | Invoke-Expression
 
 # Git
 New-Alias -Name "git temp" -Value "git checkout"
