@@ -3,6 +3,12 @@ oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\night-owl.omp.json" | Invok
 # GIT
 New-Alias -Name "git temp" -Value "git checkout"
 
+function git-ignore-cleanup {
+	git rm -r --cached .
+	git add .
+	git commit -m "Dropped files from .gitignore"
+}
+
 function git-cleanup-local {
 	# update local list of pruned branches on the remote to local:
 	git fetch --prune 
