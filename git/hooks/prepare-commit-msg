@@ -52,7 +52,9 @@ branchName=`git rev-parse --abbrev-ref HEAD`
 
 # search jira issue id in a pattern such a "feature/ABC-123-description"
 jiraId=$(echo $branchName | sed -nr 's,[a-z]+/([A-Z0-9]+-[0-9]+)-.+,\1,p')
-jiraId=[$(echo $jiraId | grep -io '^[a-z]\+-[0-9]\+')]
+if [ -n "$my_var" ]; then
+    jiraId=[$(echo $jiraId | grep -io '^[a-z]\+-[0-9]\+')]
+fi
 
 # only prepare commit message if pattern matched and jiraId was found
 if [[ ! -z $jiraId ]]; then
