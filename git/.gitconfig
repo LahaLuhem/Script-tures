@@ -16,8 +16,8 @@
 	eol = false
 	
 	# use aggressive compression
-  # can make your repo smaller but can also be slow
-  compression = 9
+  	# can make your repo smaller but can also be slow
+  	compression = 9
 	
 	filemode = false
 	whitespace = fix
