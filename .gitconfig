@@ -1,0 +1,31 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Mehul Ahal
+	email = m.ahal@dimerce.com
+[safe]
+	directory = .git
+	directory = *
+[core]
+	autocrlf = input
+	editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession
+	
+	eol = false
+	
+	# use aggressive compression
+  # can make your repo smaller but can also be slow
+  compression = 9
+	
+	filemode = false
+	whitespace = fix
+[color]
+	ui = auto
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
