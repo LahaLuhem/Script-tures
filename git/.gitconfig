@@ -8,6 +8,10 @@
 	email = m.ahal@dimerce.com
 [safe]
 	directory = .git
+	# Before disabling, make sure you understand this security measure, and why it exists.
+	# You should not do this if your repositories are stored on a shared drive.
+	# However, if you are the sole user of your machine 100% of the time, and your repositories are stored locally,
+	# then disabling this check should, theoretically, pose no increased risk.
 	directory = *
 [core]
 	autocrlf = input
