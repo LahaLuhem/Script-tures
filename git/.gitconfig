@@ -29,3 +29,9 @@
 	prune = true
 [diff]
 	colorMoved = zebra
+[alias]
+	temp = checkout
+	repo-cleanup = !git gc --aggressive --prune=now && git repack -adfF --depth=250 --window=250
+	gitignore-cleanup = !git rm -r --cached . && git add .
+	cleanup-local = !git fetch --prune && git branch --merged remotes/origin/develop | %{$_.trim()} | ?{$_ -notmatch 'develop'} | %{git branch -d $_} && git remote prune origin
+	cleanup-remote = !git fetch --prune && git branch --merged remotes/origin/develop -r | %{$_.trim().replace('origin/', '')} | ?{$_ -notmatch 'develop'} | %{git push --delete origin $_} && git remote prune origin
