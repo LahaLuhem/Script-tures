@@ -1,21 +1,20 @@
 #!/bin/sh
 
 # check if not an amend
-if [[ $(cat $1) =~ ^\[[a-zA-Z]+-[0-9]+\] ]];
-then
-	exit 0
+if [[ $(cat "$1") =~ ^\[[a-zA-Z]+-[0-9]+\] ]]; then
+    exit 0
 fi
 
 # get current branch
-branchName=`git rev-parse --abbrev-ref HEAD`
+branchName=$(git rev-parse --abbrev-ref HEAD)
 
-# search jira issue id in a pattern such a "feature/ABC-123-description"
-jiraId=$(echo $branchName | sed -nr 's,[a-z]+/([A-Z0-9]+-[0-9]+)[-_].+,\1,p')
+# search Jira issue ID in a pattern such as "feature/ABC-123-description"
+jiraId=$(echo "$branchName" | perl -pe 's/.*\/([[:alnum:]]+-[0-9]+)[^[:alnum:]].*/\1/')
 
-# only prepare commit message if pattern matched and jiraId was found
+# only prepare commit message if pattern matched and Jira ID was found
 if [[ ! -z $jiraId ]]; then
-	bak=$(cat $1)
-	joined="[$jiraId] $bak"
-	# $1 is the name of the file containing the commit message
-	echo $joined > $1
+    bak=$(cat "$1")
+    joined="[$jiraId] $bak"
+    # $1 is the name of the file containing the commit message
+    echo "$joined" > "$1"
 fi
