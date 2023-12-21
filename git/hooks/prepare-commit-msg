@@ -10,7 +10,7 @@ fi
 branchName=`git rev-parse --abbrev-ref HEAD`
 
 # search jira issue id in a pattern such a "feature/ABC-123-description"
-jiraId=$(echo feature/DSUP-2982-🎨-checkout-ui-revamp | perl -C -n -e '/[a-z]+\/([A-Z0-9]+-[0-9]+)[-_[:alnum:]_[:space:]\.\(\)-[:punct:]\p{So}]+/ && print $1')
+jiraId=$(echo $branchName | perl -C -n -e '/[a-z]+\/([A-Z0-9]+-[0-9]+)[-_[:alnum:]_[:space:]\.\(\)-[:punct:]\p{So}]+/ && print $1')
 
 # only prepare commit message if pattern matched and jiraId was found
 if [[ ! -z $jiraId ]]; then
