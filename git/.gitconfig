@@ -4,8 +4,8 @@
 	process = git-lfs filter-process
 	required = true
 [user]
-	name = Mehul Ahal
-	email = m.ahal@dimerce.com
+	name = My Name
+	email = my.email@company.com
 [safe]
 	directory = .git
 	# Before disabling, make sure you understand this security measure, and why it exists.
@@ -38,5 +38,11 @@
 	repo-cleanup = !git gc --aggressive --prune=now && git repack -adfF --depth=250 --window=250
 	gitignore-cleanup = !git rm -r --cached . && git add .
 	default-branch-name = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+	drop-empty-commits = !git filter-branch --prune-empty --parent-filter 'sed "s/-p //g" | xargs -r git show-branch --independent | sed "s/\\</-p /g"'
+	flatten-all-merges = rebase --root HEAD
 	cleanup-local = !git fetch --prune && git branch --merged remotes/origin/develop | %{$_.trim()} | ?{$_ -notmatch 'develop'} | %{git branch -d $_} && git remote prune origin
 	cleanup-remote = !git fetch --prune && git branch --merged remotes/origin/develop -r | %{$_.trim().replace('origin/', '')} | ?{$_ -notmatch 'develop'} | %{git push --delete origin $_} && git remote prune origin
+[i18n]
+	commitEncoding = utf-8
+[push]
+	autoSetupRemote = true
