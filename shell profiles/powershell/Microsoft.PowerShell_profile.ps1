@@ -36,6 +36,9 @@ function global:flutter {
 function global:dart {
 	fvm dart $args
 }
+function adb-screenshot {
+	adb exec-out screencap -p > screenshot.png
+}
 
 
 
