@@ -1,11 +1,12 @@
+[user]
+	name = My Name
+	email = my.email@company.com
+	signingkey = /path/to/.ssh/id_ed25519.pub
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[user]
-	name = My Name
-	email = my.email@company.com
 [safe]
 	directory = .git
 	# Before disabling, make sure you understand this security measure, and why it exists.
@@ -15,14 +16,14 @@
 	directory = *
 [core]
 	autocrlf = input
-	editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession
-	
+	editor = nano
+
 	eol = false
-	
+
 	# use aggressive compression
   	# can make your repo smaller but can also be slow
-  	compression = 9
-	
+	compression = 9
+
 	filemode = false
 	whitespace = fix
 [color]
@@ -34,7 +35,7 @@
 [diff]
 	colorMoved = zebra
 [alias]
-	temp = checkout
+	resign = "!re() { git rebase --exec 'git commit --amend --no-edit -n -S' -i $1; }; re"
 	repo-cleanup = !git gc --aggressive --prune=now && git repack -adfF --depth=250 --window=250
 	gitignore-cleanup = !git rm -r --cached . && git add .
 	default-branch-name = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
@@ -46,6 +47,10 @@
 	commitEncoding = utf-8
 [push]
 	autoSetupRemote = true
+[credential]
+	helper = osxkeychain
+	credentialStore = keychain
+	bitbucketAuthModes = oath
 [commit]
 	gpgSign = true
 [gpg]
@@ -53,3 +58,7 @@
 [tag]
 	forceSignAnnotated = false
 	gpgsign = true
+[maintenance "repack"]
+	enabled = true
+[maintenance "gc"]
+	enabled = true
